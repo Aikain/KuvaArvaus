@@ -50,18 +50,27 @@ header h2 {
     height: 100%;
     position: absolute;
     right: 0;
+    width: 39%;
 }
 .select {
     height: 50%;
+    text-align: center;
 }
 .select button {
-    
+    height: 50px;
+    width: 100px;
+    background-color: orange;
+    border-radius: 10px;
 }
 .send {
     height: 50%;
+    text-align: center;
 }
 .send button {
-    
+    height: 50px;
+    width: 100px;
+    background-color: orange;
+    border-radius: 10px;
 }
 .control input {
     visibility: hidden;
