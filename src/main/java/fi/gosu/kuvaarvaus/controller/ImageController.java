@@ -90,6 +90,7 @@ public class ImageController {
         if (user == null) {
             return new ResponseEntity(HttpStatus.UNAUTHORIZED);
         }
+        System.out.println(!user.equals(image.getUser()));
         if (!user.equals(image.getUser())) {
             return new ResponseEntity(HttpStatus.FORBIDDEN);
         }
