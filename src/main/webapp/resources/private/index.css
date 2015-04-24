@@ -8,13 +8,8 @@ header {
     height: 10%;
     position: relative;
 }
-.link {
-    background-color: black;
-    color: white;
-    height: 50%;
-    position: absolute;
-    text-align: right;
-    padding: 5px;
+header h2{
+    right: 0;
 }
 .logout {
     position: absolute;

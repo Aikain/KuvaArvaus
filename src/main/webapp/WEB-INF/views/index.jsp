@@ -20,9 +20,7 @@
                 </form>
             </div>
             <h1>KuvaArvaus - Tervetuloa ${user.username}!</h1>
-            <div class="link">
-                <a href="images"><h2>Kuvat</h2></a>
-            </div>
+            <h2><a href="images">Kuvat</a></h2>
         </header>
         <div class="top">
             <div class="mainImage">
