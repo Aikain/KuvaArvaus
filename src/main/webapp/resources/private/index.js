@@ -5,6 +5,7 @@ function preview(file) {
     $("#msg").text("Ladataan kuvaa ja piirretään arvoituskuvat..");
     var canvas = $("#preview")[0];
     canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
+    $("#halfImages").html("");
     imgarray = Array();
     var img = document.createElement("img");
     var reader = new FileReader();
