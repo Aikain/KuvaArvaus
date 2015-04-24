@@ -42,7 +42,7 @@ header h2 {
 .control {
     float: left;
     width: 40%;
-    min-width: 288px;
+    min-width: 250px;
 }
 .control input {
     visibility: hidden;
