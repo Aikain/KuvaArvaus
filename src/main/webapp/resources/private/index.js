@@ -138,11 +138,14 @@ function cloneCanvas(oldCanvas) {
 function calculate(canvas) {
     var data = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height).data;
     var n = 0;
+    var ctx = canvas.getContext('2d');
+    ctx.fillStyle="#FF0000";
     for (var y = 0; y < canvas.height; y++) {
         for (var x = 0; x < canvas.width; x++) {
-            if (!data[4 * y * canvas.width + x + 3])
+            if (!data[4 * (y * canvas.width + x) + 3]) {
                 n++;
+            }
         }
     }
-    return Math.floor(n / (canvas.width * canvas.height) * 100);
+    return 100 - Math.floor(n / (canvas.width * canvas.height) * 100);
 }
