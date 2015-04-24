@@ -45,14 +45,16 @@ header h2 {
 .bottom {
     background-color: darkblue;
     height: 25%;
+    min-height: 256px;
 }
 .halfImages {
     overflow-x: auto;
+    overflow-y: no-display;
     white-space: nowrap;
+    min-height: 256px;
 }
 .halfImage {
     border: 1px solid;
-    min-height: 256px;
 }
 footer {
     background-color:black;
