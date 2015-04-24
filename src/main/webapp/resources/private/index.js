@@ -88,6 +88,7 @@ function drawHalfImages(imgarray) {
 
 var apu;
 function sendImages() {
+    $("#msg").text("Lähetetään pääkuvaa..");
     send(["file"], [$("#preview")[0].toDataURL("image/png").replace(/^data:image\/(png|jpg|jpeg);base64,/, "")], "POST", "images", function (data_req) {
         $("#msg").text("Pääkuva siirretty.");
         var obj = JSON.parse(data_req.response);
