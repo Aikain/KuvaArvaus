@@ -21,6 +21,7 @@ header h2 {
 .top {
     background-color: blue;
     height: 60%;
+    min-height: 512px;
 }
 .mainImage {
     background-color: green;
