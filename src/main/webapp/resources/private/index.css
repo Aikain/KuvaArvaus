@@ -65,7 +65,8 @@ header h2 {
     position: absolute;
     top: 50%;
     left: 50%;
-    margin: -50px, -25px;
+    margin-top: -25px;
+    margin-left: -50px;
 }
 .send {
     height: 50%;
