@@ -28,6 +28,8 @@ header h2 {
     height: 60%;
     min-height: 512px;
     min-width: 800px;
+    padding:5px;
+
 }
 .mainImage {
     background-color: green;
@@ -53,6 +55,7 @@ header h2 {
     height: 25%;
     min-height: 256px;
     min-width: 800px;
+    padding:5px;
 }
 .halfImages {
     overflow-x: auto;
@@ -69,4 +72,5 @@ footer {
     clear:both;
     text-align:center;
     padding:5px;
+    min-width: 800px;
 }
