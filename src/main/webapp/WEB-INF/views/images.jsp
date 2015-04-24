@@ -4,6 +4,8 @@
 <html>
     <head>
         <title>KuvaArvaus - Images</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="${_csrf.parameterName}" th:content="${_csrf.token}"/>
         <script type="text/javascript" charset="UTF-8" src="<c:url value='/resources/libraries/jquery-2.1.1.min.js' />"></script>
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/private/images.css' />" />
         <script type="text/javascript" charset="UTF-8" src="<c:url value='/resources/private/images.js' />"></script>
