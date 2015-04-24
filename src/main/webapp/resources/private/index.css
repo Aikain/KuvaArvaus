@@ -1,5 +1,5 @@
 html, body { height: 100%; width: 100%; margin: 0; }
-div { height: 100%; width: 100%; background: #F52887; }
+div { height: 100%; width: 100%; }
 header {
     background-color:black;
     color:white;
@@ -8,8 +8,10 @@ header {
     height: 10%;
     position: relative;
 }
-header h2{
-    right: 0;
+header h2 {
+    right: 10px;
+    top: 10px;
+    position: absolute;
 }
 .logout {
     position: absolute;
@@ -17,7 +19,7 @@ header h2{
     height: 50px;
 }
 .top {
-    background-color: darkblue;
+    background-color: blue;
     height: 60%;
 }
 .mainImage {
