@@ -79,6 +79,7 @@ header h2 {
     margin-left: 10%;
     margin-right: 10%;
     color: cyan;
+    font-size: x-large;
 }
 .send button {
     height: 50px;

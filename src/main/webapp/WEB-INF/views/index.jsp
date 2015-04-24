@@ -16,7 +16,7 @@
                 <form method="post" action="logout">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 <!--                <input type="image" src="<c:url value='/resources/private/logout.png' />" alt="Logout" />-->
-                    <input type="image" width="50px" height="50px" src="https://yt3.ggpht.com/-gjxoCu8Fu3c/AAAAAAAAAAI/AAAAAAAAAAA/Uji17DdykF4/s100-c-k-no/photo.jpg" alt="Logout" />
+                    <input type="image" width="50px" height="50px" src="https://yt3.ggpht.com/-gjxoCu8Fu3c/AAAAAAAAAAI/AAAAAAAAAAA/Uji17DdykF4/s100-c-k-no/photo.jpg" title="Kirjaudu ulos!" />
                 </form>
             </div>
             <h1>KuvaArvaus - Tervetuloa ${user.username}!</h1>
