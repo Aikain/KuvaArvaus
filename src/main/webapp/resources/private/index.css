@@ -33,7 +33,13 @@ header {
     height: 50%;
 }
 .link {
-    height: 50%;    
+    height: 50%;
+    position: relative;
+    text-align: center;
+}
+.link a {
+    position: absolute;
+    top: 50%;
 }
 .bottom {
     background-color: darkblue;
