@@ -2,6 +2,7 @@ var imgarray = Array();
 var array = Array();
 
 function preview(file) {
+    $("#msg")[0].text("Ladataan kuvaa ja piirretään arvoituskuvat..");
     var canvas = $("#preview")[0];
     var img = document.createElement("img");
     var reader = new FileReader();
@@ -72,23 +73,27 @@ function drawHalfImages(imgarray) {
     for (var i = 0; i < imgarray.length; i++) {
         var myCanvas = imgarray[i];
         var targetCanvas = document.createElement("canvas");
-        targetCanvas.id = "halfImage" + (i+1);
+        targetCanvas.id = "halfImage" + (i + 1);
         targetCanvas.className = "halfImage";
         targetCanvas.width = width;
         targetCanvas.height = height;
         targetCanvas.getContext('2d').drawImage(myCanvas, 0, 0, myCanvas.width, myCanvas.height, 0, 0, targetCanvas.width, targetCanvas.height);
         $("#halfImages").append(targetCanvas);
     }
+    $("#msg")[0].text("Lähetä kuvat 'lähetä' napista!");
 }
 
 var apu;
 function sendImages() {
     send(["file"], [$("#preview")[0].toDataURL("image/png").replace(/^data:image\/(png|jpg|jpeg);base64,/, "")], "POST", "images", function (data_req) {
+        $("#msg")[0].text("Pääkuva siirretty.");
         var obj = JSON.parse(data_req.response);
         apu = 0;
         for (var i = 0; i < imgarray.length; i++) {
-            send(["file", "visibility"], [imgarray[i].toDataURL("image/png").replace(/^data:image\/(png|jpg|jpeg);base64,/, ""), calculate(imgarray[i])], "POST", "images/" + obj.id + "/halfImage", function() {
-                if (++apu == imgarray.length) alert("Kuvat ladanneet!");
+            send(["file", "visibility"], [imgarray[i].toDataURL("image/png").replace(/^data:image\/(png|jpg|jpeg);base64,/, ""), calculate(imgarray[i])], "POST", "images/" + obj.id + "/halfImage", function () {
+                $("#msg")[0].text((apu + 1) + " kuvaa ladattu!");
+                if (++apu == imgarray.length)
+                    $("#msg")[0].text("Kaikki kuvat ladanneet!");
             });
         }
     });

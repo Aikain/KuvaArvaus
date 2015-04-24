@@ -53,7 +53,7 @@ header h2 {
     width: 39%;
 }
 .select {
-    height: 50%;
+    height: 45%;
     text-align: center;
     position: relative;
 }
@@ -73,9 +73,12 @@ header h2 {
     text-align: center;
 }
 .send p{
-    width: 200px;
+    width: 80%;
     height: 150px;
-    border: 1px groove greenyellow;
+    border: 3px groove greenyellow;
+    margin-left: 10%;
+    margin-right: 10%;
+    color: cyan;
 }
 .send button {
     height: 50px;
