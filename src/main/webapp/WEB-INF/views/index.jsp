@@ -21,7 +21,7 @@
             </div>
             <h1>KuvaArvaus - Tervetuloa ${user.username}!</h1>
             <div class="link">
-                <a href="images">Kuvat</a>
+                <a href="images"><h2>Kuvat</h2></a>
             </div>
         </header>
         <div class="top">

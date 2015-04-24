@@ -9,9 +9,12 @@ header {
     position: relative;
 }
 .link {
+    background-color: black;
+    color: white;
     height: 50%;
     position: absolute;
-    text-align: center;
+    text-align: right;
+    padding: 5px;
 }
 .logout {
     position: absolute;
