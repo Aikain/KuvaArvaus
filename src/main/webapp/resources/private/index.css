@@ -25,6 +25,8 @@ header h2 {
 .mainImage {
     background-color: green;
     width: 60%;
+    min-width: 512px;
+    min-height: 512px;
     float: left;
     text-align: center;
 }
@@ -35,8 +37,10 @@ header h2 {
     float: left;
     width: 40%;
 }
-.imageControl {
-    height: 50%;
+.control input {
+    visibility: hidden;
+    width: 0;
+    height: 0;
 }
 .bottom {
     background-color: darkblue;
@@ -48,6 +52,7 @@ header h2 {
 }
 .halfImage {
     border: 1px solid;
+    min-height: 256px;
 }
 footer {
     background-color:black;

@@ -27,10 +27,9 @@
                 <canvas id="preview" width="512px" height="512px"></canvas>
             </div>
             <div class="control">
-                <div class="imageControl">
-                    <input id="upload" type="file" name="upload" title="Lisää kuva" onchange="preview(this)" accept="image/png,image/jpg,image/jpeg">
-                    <button onclick="sendImages()">Lähetä!</button>
-                </div>
+                <input id="upload" type="file" name="upload" title="Lisää kuva" onchange="preview(this)" accept="image/png,image/jpg,image/jpeg">
+                <button onclick="$('#upload')[0].click()">Valitse kuva!</button>
+                <button onclick="sendImages()">Lähetä!</button>
             </div>
         </div>
         <div class="bottom">
