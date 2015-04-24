@@ -80,6 +80,28 @@ public class ImageController {
         return new ResponseEntity<>(image.getContent(), headers, HttpStatus.CREATED);
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity deleteImage(@PathVariable String id) {
+        Image image = imageRepository.findOne(id);
+        if (image == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        User user = userService.getAuthenticatedPerson();
+        if (user == null) {
+            return new ResponseEntity(HttpStatus.UNAUTHORIZED);
+        }
+        if (!user.equals(image.getUser())) {
+            return new ResponseEntity(HttpStatus.FORBIDDEN);
+        }
+        for (HalfImage halfImage : image.getHalfImages()) {
+            halfImageRepository.delete(halfImage);
+        }
+        image.getHalfImages().removeAll(image.getHalfImages());
+        user.getImages().remove(image);
+        imageRepository.delete(image);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/halfImage/{id}", method = RequestMethod.GET)
     public ResponseEntity<byte[]> getHalfImage(
             @RequestHeader(required = false, value = "If-None-Match") String ifNoneMatch,
