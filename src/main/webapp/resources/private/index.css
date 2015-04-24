@@ -8,6 +8,10 @@ header {
     height: 10%;
     position: relative;
 }
+header h1 {
+    margin-left: 80px;
+    margin-right: 80px;
+}
 header h2 {
     right: 10px;
     top: 10px;
@@ -22,6 +26,7 @@ header h2 {
     background-color: blue;
     height: 60%;
     min-height: 512px;
+    min-width: 800px;
 }
 .mainImage {
     background-color: green;
@@ -37,6 +42,7 @@ header h2 {
 .control {
     float: left;
     width: 40%;
+    min-width: 288px;
 }
 .control input {
     visibility: hidden;
