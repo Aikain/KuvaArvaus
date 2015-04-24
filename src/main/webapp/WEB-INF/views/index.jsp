@@ -12,26 +12,26 @@
     </head>
     <body>
         <header>
+            <div class="logout">
+                <form method="post" action="logout">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+<!--                        <input type="image" src="<c:url value='/resources/private/logout.png' />" alt="Logout" />-->
+                    <input type="image" width="50px" height="50px" src="https://yt3.ggpht.com/-gjxoCu8Fu3c/AAAAAAAAAAI/AAAAAAAAAAA/Uji17DdykF4/s100-c-k-no/photo.jpg" alt="Logout" />
+                </form>
+            </div>
             <h1>KuvaArvaus - Tervetuloa ${user.username}!</h1>
+            <div class="link">
+                <a href="images">Kuvat</a>
+            </div>
         </header>
         <div class="top">
             <div class="mainImage">
                 <canvas id="preview" width="512px" height="512px"></canvas>
             </div>
             <div class="control">
-                <div class="logout">
-                    <form method="post" action="logout">
-                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-<!--                        <input type="image" src="<c:url value='/resources/private/logout.png' />" alt="Logout" />-->
-                        <input type="image" width="50px" height="50px" src="https://yt3.ggpht.com/-gjxoCu8Fu3c/AAAAAAAAAAI/AAAAAAAAAAA/Uji17DdykF4/s100-c-k-no/photo.jpg" alt="Logout" />
-                    </form>
-                </div>
                 <div class="imageControl">
                     <input id="upload" type="file" name="upload" title="Lisää kuva" onchange="preview(this)" accept="image/png,image/jpg,image/jpeg">
                     <button onclick="sendImages()">Lähetä!</button>
-                </div>
-                <div class="link">
-                    <a href="images">Kuvat</a>
                 </div>
             </div>
         </div>
