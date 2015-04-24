@@ -15,7 +15,7 @@ function send(names, values, type, destination, onreadystatechange) {
     }
     var data_req = new XMLHttpRequest();
     data_req.open(type, destination, true);
-    data_req.setRequestHeader("X-CSRF-TOKEN", $("input[name='_csrf']").val());
+    data_req.setRequestHeader("X-CSRF-TOKEN", $("meta[name='_csrf']").attr("th:content"));
     data_req.send(form);
     onreadystatechange = onreadystatechange ? onreadystatechange : function () {
     };
