@@ -16,7 +16,7 @@
         <div>
             <ul>
                 <c:forEach var="image" items="${images}">    
-                    <li><a href="images/${image.id}.png" onmouseover="showImage(this)">${image.id}</a> <button onclick="deleteImage(this, ${image.id})">Poista!</button></li>
+                    <li><a href="images/${image.id}.png" onmouseover="showImage(this)">${image.id}</a> <button onclick="deleteImage(this, '${image.id}')">Poista!</button></li>
                     <ul>
                         <c:forEach var="halfImage" items="${image.halfImages}">
                             <li><a href="images/halfImage/${halfImage.id}.png" onmouseover="showImage(this)">${halfImage.visibility} - ${halfImage.id}</a></li>
