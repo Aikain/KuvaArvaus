@@ -1,9 +1,11 @@
-var imgarray = Array();
+var imgarray;
 var array = Array();
 
 function preview(file) {
     $("#msg").text("Ladataan kuvaa ja piirretään arvoituskuvat..");
     var canvas = $("#preview")[0];
+    canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
+    imgarray = Array();
     var img = document.createElement("img");
     var reader = new FileReader();
     reader.onloadend = function (e) {
