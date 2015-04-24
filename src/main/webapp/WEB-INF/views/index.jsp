@@ -15,7 +15,7 @@
             <div class="logout">
                 <form method="post" action="logout">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-<!--                        <input type="image" src="<c:url value='/resources/private/logout.png' />" alt="Logout" />-->
+<!--                <input type="image" src="<c:url value='/resources/private/logout.png' />" alt="Logout" />-->
                     <input type="image" width="50px" height="50px" src="https://yt3.ggpht.com/-gjxoCu8Fu3c/AAAAAAAAAAI/AAAAAAAAAAA/Uji17DdykF4/s100-c-k-no/photo.jpg" alt="Logout" />
                 </form>
             </div>
@@ -27,15 +27,18 @@
                 <canvas id="preview" width="512px" height="512px"></canvas>
             </div>
             <div class="control">
-                <input id="upload" type="file" name="upload" title="Lisää kuva" onchange="preview(this)" accept="image/png,image/jpg,image/jpeg">
-                <button onclick="$('#upload')[0].click()">Valitse kuva!</button>
-                <button onclick="sendImages()">Lähetä!</button>
+                <div class="select">
+                    <input id="upload" type="file" name="upload" title="Lisää kuva" onchange="preview(this)" accept="image/png,image/jpg,image/jpeg">
+                    <button onclick="$('#upload')[0].click()">Valitse kuva!</button>
+                </div>
+                <div class="send">
+                    <p id="sendMsg"></p>
+                    <button onclick="sendImages()">Lähetä!</button>
+                </div>
             </div>
         </div>
         <div class="bottom">
-            <div class="halfImages" id="halfImages">
-
-            </div>
+            <div class="halfImages" id="halfImages"></div>
         </div>
         <footer>
             Copyright © Aikain - gosu.fi 

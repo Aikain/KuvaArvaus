@@ -44,6 +44,19 @@ header h2 {
 }
 .control {
     min-width: 250px;
+    height: 100%;
+}
+.select {
+    height: 50%;
+}
+.select button {
+    
+}
+.send {
+    height: 50%;
+}
+.send button {
+    
 }
 .control input {
     visibility: hidden;
