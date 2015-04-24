@@ -32,7 +32,7 @@
                     <button onclick="$('#upload')[0].click()">Valitse kuva!</button>
                 </div>
                 <div class="send">
-                    <p id="sendMsg"></p>
+                    <p id="sendMsg">Valitse ja tarkasta kuva ennen lähettämistä!</p>
                     <button onclick="sendImages()">Lähetä!</button>
                 </div>
             </div>
