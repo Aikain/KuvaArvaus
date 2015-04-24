@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Lob;
@@ -20,7 +21,7 @@ public class Image extends AbstractUUIDPersistable {
     private byte[] content;
     @ManyToOne
     private User user;
-    @OneToMany
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<HalfImage> halfImages;
 
     public Image() {

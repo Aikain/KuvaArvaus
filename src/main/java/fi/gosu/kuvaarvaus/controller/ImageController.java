@@ -93,10 +93,6 @@ public class ImageController {
         if (!user.equals(image.getUser())) {
             return new ResponseEntity(HttpStatus.FORBIDDEN);
         }
-        for (HalfImage halfImage : image.getHalfImages()) {
-            halfImageRepository.delete(halfImage);
-        }
-        image.getHalfImages().removeAll(image.getHalfImages());
         user.getImages().remove(image);
         imageRepository.delete(image);
         return new ResponseEntity(HttpStatus.OK);
