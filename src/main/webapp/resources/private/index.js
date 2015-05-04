@@ -139,10 +139,11 @@ function calculate(canvas) {
     var data = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height).data;
     var n = 0;
     var ctx = canvas.getContext('2d');
-    ctx.fillStyle="#FF0000";
+    ctx.fillStyle = 'rgba(255, 255, 255, 1)';
     for (var y = 0; y < canvas.height; y++) {
         for (var x = 0; x < canvas.width; x++) {
             if (!data[4 * (y * canvas.width + x) + 3]) {
+                ctx.fillRect(x, y, 1, 1);
                 n++;
             }
         }
