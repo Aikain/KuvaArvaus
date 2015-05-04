@@ -3,6 +3,8 @@ package fi.gosu.kuvaarvaus.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -67,6 +69,13 @@ public class User implements Serializable {
     }
 
     public List<Image> getImages() {
+        Collections.sort(images, new Comparator<Image>() {
+
+            @Override
+            public int compare(Image o1, Image o2) {
+                return o1.getId().compareTo(o1.getId());
+            }
+        });
         return images;
     }
 
