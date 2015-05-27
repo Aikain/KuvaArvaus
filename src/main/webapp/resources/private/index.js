@@ -51,7 +51,7 @@ function doHalfImages(ctx, width, height) {
         var sy = Math.random() * (height - sheight);
         ctx2.putImageData(ctx.getImageData(sx, sy, swidth, sheight), sx, sy);
         if (n + 1 == array[i]) {
-            imgarray.push(cloneCanvas(canvas2));
+            imgarray.push(drawBGWhite(cloneCanvas(canvas2)));
             i++;
         }
     }
@@ -135,15 +135,26 @@ function cloneCanvas(oldCanvas) {
     return newCanvas;
 }
 
-function calculate(canvas) {
-    var data = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height).data;
-    var n = 0;
+function drawBGWhite(canvas) {
     var ctx = canvas.getContext('2d');
+    var data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
     ctx.fillStyle = 'rgba(255, 255, 255, 1)';
     for (var y = 0; y < canvas.height; y++) {
         for (var x = 0; x < canvas.width; x++) {
             if (!data[4 * (y * canvas.width + x) + 3]) {
                 ctx.fillRect(x, y, 1, 1);
+            }
+        }
+    }
+    return canvas;
+}
+
+function calculate(canvas) {
+    var data = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height).data;
+    var n = 0;
+    for (var y = 0; y < canvas.height; y++) {
+        for (var x = 0; x < canvas.width; x++) {
+            if (data[4 * (y * canvas.width + x)] == 255 && data[4 * (y * canvas.width + x) + 1] == 255 && data[4 * (y * canvas.width + x) + 2] == 255 && data[4 * (y * canvas.width + x) + 3] == 255) {
                 n++;
             }
         }
