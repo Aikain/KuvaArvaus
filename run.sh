@@ -1,1 +1,2 @@
-mvn clean compile exec:java > kuvaarvaus.log &
+cd /srv/services/KuvaArvaus/
+mvn clean compile exec:java >> kuvaarvaus.log &
