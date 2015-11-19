@@ -7,7 +7,8 @@
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/public/login.css' />" />
         <script type="text/javascript" charset="UTF-8" src="<c:url value="/resources/public/login.js" />"></script>
     </head>
-    <body id="Body">
+    <body id="body">
+        <center>
         <div id="logInCenterizingDiv">
             <h2 id="hObject">Kirjaudu sisään</h2>
             <form id="credentialsForm" method="POST" action="authenticate">
@@ -19,10 +20,11 @@
                 </div>
                 <div id="logInButtonDiv">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                    <input id="signInButton" type="submit" value="Kirjaudu" />
+                    <input id="logInButton" type="submit" value="Kirjaudu" />
                 </div>
             </form>
         </div>
-        <a href="signup">Rekisteröidy!</a>
+        <a href="signup">Rekisteröidy!</a><br /><br />
+        <a href="https://github.com/Aikain/KuvaArvaus">Github</a>
     </body>
 </html>

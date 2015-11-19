@@ -8,22 +8,23 @@
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/public/signUp.css' />" />
     </head>
     <body>
-        <div>
+        <center>
+        <div id="signInCenterizingDiv">
             <h2>Rekisteröi tili</h2>
             <form method="POST" action="users">
                 <div id="outerDiv">
                     <div>
-                        <input id="nameInput" type="text" name="username" placeholder="Name" />
+                        <input id="nameInput" type="text" name="username" placeholder="Nimi" />
                     </div>
                     <div>
-                        <input type="password" name="password" placeholder="Password" />
+                        <input type="password" name="password" placeholder="Salasana" />
                     </div>
-                    <br>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <input id="signInButton" type="submit" value="Rekisteröi" />
                 </div>
             </form>
         </div>
-        <a href='login'>Kirjaudu sisään!</a>
+        <a href='login'>Kirjaudu sisään!</a><br /><br />
+        <a href="https://github.com/Aikain/KuvaArvaus">Github</a>
     </body>
 </html>
