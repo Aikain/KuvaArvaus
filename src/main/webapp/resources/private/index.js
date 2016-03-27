@@ -1,7 +1,12 @@
 var imgarray;
 var array = Array();
+var voidaankoLahettaa = false;
 
 function preview(file) {
+    if (file.files.length == 0) {
+      $("#msg").text("Valitse kuva ensin!");
+      return;
+    }
     $("#msg").text("Ladataan kuvaa ja piirretään arvoituskuvat..");
     var canvas = $("#preview")[0];
     canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
@@ -31,6 +36,7 @@ function preview(file) {
         ctx.drawImage(img, 0, 0, width, height);
 
         doHalfImages(ctx, width, height);
+        voidaankoLahettaa = true;
     };
     reader.readAsDataURL(file.files[0]);
     $("#upload")[0].innerHTML = $("#upload")[0].innerHTML;
@@ -88,6 +94,10 @@ function drawHalfImages(imgarray) {
 
 var apu;
 function sendImages() {
+    if (!voidaankoLahettaa) {
+      $("#msg").text("Valitse ensin kuva ja anna sen latautua!");
+      return;
+    }
     $("#msg").text("Lähetetään pääkuvaa..");
     send(["file"], [$("#preview")[0].toDataURL("image/png").replace(/^data:image\/(png|jpg|jpeg);base64,/, "")], "POST", "images", function (data_req) {
         $("#msg").text("Pääkuva siirretty.");

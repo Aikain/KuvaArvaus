@@ -1,11 +1,7 @@
 package fi.gosu.kuvaarvaus.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
@@ -15,7 +11,7 @@ public class HalfImage extends AbstractUUIDPersistable {
     @Lob
     @Basic(fetch = FetchType.LAZY)
     private byte[] content;
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private Image image;
     @Min(0)
     @Max(100)

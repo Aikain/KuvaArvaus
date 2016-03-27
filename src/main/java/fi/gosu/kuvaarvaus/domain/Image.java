@@ -1,17 +1,8 @@
 package fi.gosu.kuvaarvaus.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import java.util.*;
+import javax.persistence.*;
 
 @Entity
 public class Image extends AbstractUUIDPersistable {
@@ -19,9 +10,9 @@ public class Image extends AbstractUUIDPersistable {
     @Lob
     @Basic(fetch = FetchType.LAZY)
     private byte[] content;
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private User user;
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private List<HalfImage> halfImages;
 
     public Image() {
