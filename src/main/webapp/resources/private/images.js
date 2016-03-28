@@ -3,7 +3,8 @@ function showImage(asd) {
 }
 function deleteImage(delbtn, id) {
     send([], [], 'DELETE', "images/" + id, function (data_req) {
-        console.log("Kuva poistettu.")
+        var a = data_req.responseUrl.split("/");
+        $("ul:contains(" + a[a.length-1] + ")").remove();
     })
 }
 function send(names, values, type, destination, onreadystatechange) {
