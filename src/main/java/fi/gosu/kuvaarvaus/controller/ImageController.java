@@ -94,6 +94,7 @@ public class ImageController {
             return new ResponseEntity(HttpStatus.FORBIDDEN);
         }
         user.getImages().remove(image);
+        image.setUser(null);
         imageRepository.delete(image);
         return new ResponseEntity(HttpStatus.OK);
     }
