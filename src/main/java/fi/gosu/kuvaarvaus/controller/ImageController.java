@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.UUID;
+
 @Controller
 @RequestMapping("/images")
 public class ImageController {
@@ -45,7 +47,7 @@ public class ImageController {
 
     @Transactional
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity createImage(@RequestParam("file") String file) {
+    public ResponseEntity createImage(@RequestParam("file") String file, @RequestParam(required = false) String name) {
         if (file == null || file.length() == 0) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
@@ -53,7 +55,11 @@ public class ImageController {
         if (user == null) {
             return new ResponseEntity(HttpStatus.UNAUTHORIZED);
         }
+        if (name == null || name.isEmpty()) {
+            name = UUID.randomUUID().toString().substring(0, 8);
+        }
         Image image = new Image();
+        image.setName(name);
         image.setContent(DatatypeConverter.parseBase64Binary(file));
         image.setUser(user);
         image = imageRepository.save(image);

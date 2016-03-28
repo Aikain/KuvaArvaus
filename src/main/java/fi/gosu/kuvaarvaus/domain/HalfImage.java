@@ -1,9 +1,11 @@
 package fi.gosu.kuvaarvaus.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import java.util.Date;
 
 @Entity
 public class HalfImage extends AbstractUUIDPersistable {
@@ -17,6 +19,12 @@ public class HalfImage extends AbstractUUIDPersistable {
     @Min(0)
     @Max(100)
     private int visibility;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createTime;
+
+    public HalfImage() {
+        createTime = new Date(System.currentTimeMillis());
+    }
 
     @JsonIgnore
     public byte[] getContent() {
@@ -44,4 +52,11 @@ public class HalfImage extends AbstractUUIDPersistable {
         this.visibility = visibility;
     }
 
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 }

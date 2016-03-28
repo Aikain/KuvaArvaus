@@ -63,6 +63,7 @@
           </div>
           <div class="send">
             <p id="msg">Valitse ja tarkasta kuva ennen lähettämistä!</p>
+            <input type="text" id="name" placeholder="Kuvan nimi">
             <button onclick="sendImages()">Lähetä!</button>
           </div>
           <canvas id="preview" width="512px" height="512px"></canvas>

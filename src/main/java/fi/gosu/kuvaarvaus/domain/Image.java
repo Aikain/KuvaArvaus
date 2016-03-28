@@ -16,9 +16,13 @@ public class Image extends AbstractUUIDPersistable {
     @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinColumn(name = "HalfImage_Image", unique = false)
     private List<HalfImage> halfImages;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createTime;
+    private String name;
 
     public Image() {
         this.halfImages = new ArrayList<>();
+        this.createTime = new Date(System.currentTimeMillis());
     }
 
     @JsonIgnore
@@ -39,6 +43,14 @@ public class Image extends AbstractUUIDPersistable {
         this.user = user;
     }
 
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
     public List<HalfImage> getHalfImages() {
         Collections.sort(halfImages, new Comparator<HalfImage>() {
             @Override
@@ -54,4 +66,11 @@ public class Image extends AbstractUUIDPersistable {
         this.halfImages = halfImages;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
