@@ -12,6 +12,7 @@ public class HalfImage extends AbstractUUIDPersistable {
     @Basic(fetch = FetchType.LAZY)
     private byte[] content;
     @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @JoinColumn(name = "HalfImage_Image", unique = false)
     private Image image;
     @Min(0)
     @Max(100)

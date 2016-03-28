@@ -16,7 +16,8 @@ public class User implements Serializable {
     private String username;
     private String password;
     private String salt;
-    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @JoinColumn(name = "Image_User", unique = false)
     private List<Image> images;
 
     public User() {
