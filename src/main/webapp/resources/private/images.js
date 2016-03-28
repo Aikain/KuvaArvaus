@@ -3,7 +3,7 @@ function showImage(asd) {
 }
 function deleteImage(delbtn, id) {
     send([], [], 'DELETE', "images/" + id, function (data_req) {
-        var a = data_req.responseUrl.split("/");
+        var a = data_req.responseURL.split("/");
         $("ul:contains(" + a[a.length-1] + ")").remove();
     })
 }
