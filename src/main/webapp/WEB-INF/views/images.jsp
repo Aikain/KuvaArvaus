@@ -39,7 +39,7 @@
             <thead>
               <tr>
                 <td>Nimi</td>
-                <td>Luontiaika</td>
+                <td style="width:200px">Luontiaika</td>
                 <td>Poista</td>
                 <td>1. kuva</td>
                 <td>2. kuva</td>

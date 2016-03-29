@@ -3,9 +3,6 @@
     Author     : Ville
 */
 
-ul {
-  margin-bottom: 10px;
-}
 .aihe {
   width: 1024px;
 }
@@ -13,4 +10,7 @@ ul {
   width: 512px;
   height: 670px;
   overflow-y: auto;
+}
+td {
+  width: 60px;
 }
