@@ -36,6 +36,18 @@
         </div>
         <div class="right">
           <table>
+            <thead>
+              <tr>
+                <td>Nimi</td>
+                <td>Luontiaika</td>
+                <td>Poista</td>
+                <td>1. kuva</td>
+                <td>2. kuva</td>
+                <td>3. kuva</td>
+                <td>4. kuva</td>
+                <td>5. kuva</td>
+              </tr>
+            </head>
             <tbody>
               <c:forEach var="image" items="${images}">
                 <tr>
