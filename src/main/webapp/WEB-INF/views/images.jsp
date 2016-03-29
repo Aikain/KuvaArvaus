@@ -38,14 +38,14 @@
           <table>
             <thead>
               <tr>
-                <td>Nimi</td>
+                <td style="width:200px">Nimi</td>
                 <td style="width:200px">Luontiaika</td>
                 <td>Poista</td>
-                <td>1. kuva</td>
-                <td>2. kuva</td>
-                <td>3. kuva</td>
-                <td>4. kuva</td>
-                <td>5. kuva</td>
+                <td>1.</td>
+                <td>2.</td>
+                <td>3.</td>
+                <td>4.</td>
+                <td>5.</td>
               </tr>
             </head>
             <tbody>
