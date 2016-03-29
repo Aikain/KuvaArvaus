@@ -1,3 +1,9 @@
+$(document).ready(function() {
+    $("table")
+    .tablesorter({widthFixed: true, widgets: ['zebra']})
+    .tablesorterPager({container: $("#pager")});
+});
+
 function showImage(asd) {
     $("#img")[0].src = asd.href;
 }
