@@ -8,6 +8,7 @@
     <meta name="${_csrf.parameterName}" th:content="${_csrf.token}"/>
     <script type="text/javascript" charset="UTF-8" src="<c:url value='/resources/libraries/jquery-2.1.1.min.js' />"></script>
     <script type="text/javascript" charset="UTF-8" src="<c:url value='/resources/libraries/jquery.tablesorter.min.js' />"></script>
+    <script type="text/javascript" charset="UTF-8" src="<c:url value='/resources/libraries/jquery-latest.js' />"></script>
     <script type="text/javascript" charset="UTF-8" src="<c:url value='/resources/libraries/jquery.tablesorter.pager.js' />"></script>
     <link rel="stylesheet" type="text/css" href="<c:url value='/resources/private/index.css' />" />
     <link rel="stylesheet" type="text/css" href="<c:url value='/resources/private/images.css' />" />
