@@ -1,4 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -53,7 +54,7 @@
             <tbody>
               <c:forEach var="image" items="${images}">
                 <tr>
-                 <td><a href="images/${image.id}.png" onmouseover="showImage(this)">${image.name}</a></td><td>${image.createTime}</td><td><button onclick="deleteImage(this, '${image.id}')">Poista!</button></td>
+                 <td><a href="images/${image.id}.png" onmouseover="showImage(this)">${image.name}</a></td><td>${fn:substring(image.createTime, 0, 19)}</td><td><button onclick="deleteImage(this, '${image.id}')">Poista!</button></td>
                   <c:forEach var="halfImage" items="${image.halfImages}">
                     <td><a href="images/halfImage/${halfImage.id}.png" onmouseover="showImage(this)">${halfImage.visibility}</a></td>
                   </c:forEach>
