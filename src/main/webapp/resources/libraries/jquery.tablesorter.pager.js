@@ -19,7 +19,7 @@
 				var c = table.config;
 				if(!c.pagerPositionSet && c.positionFixed) {
 					var c = table.config, o = $(table);
-					if(o.offset) {
+					if(o.offset && false) {
 						c.container.css({
 							top: o.offset().top + o.height() + 'px',
 							position: 'absolute'
