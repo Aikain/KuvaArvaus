@@ -1,6 +1,0 @@
-if [ "$(id -u)" != "$(id aikainbot -u)" ]; then
-   echo "This script must be run as aikainbot" 1>&2
-   exit 1
-fi
-cd /srv/services/KuvaArvaus/
-mvn clean compile exec:java > kuvaarvaus.log &
