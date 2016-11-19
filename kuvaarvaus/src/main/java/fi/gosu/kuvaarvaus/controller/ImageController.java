@@ -2,9 +2,11 @@ package fi.gosu.kuvaarvaus.controller;
 
 import fi.gosu.kuvaarvaus.domain.HalfImage;
 import fi.gosu.kuvaarvaus.domain.Image;
+import fi.gosu.kuvaarvaus.domain.SingleLink;
 import fi.gosu.kuvaarvaus.domain.User;
 import fi.gosu.kuvaarvaus.repository.HalfImageRepository;
 import fi.gosu.kuvaarvaus.repository.ImageRepository;
+import fi.gosu.kuvaarvaus.repository.SingleLinkRepository;
 import fi.gosu.kuvaarvaus.service.UserService;
 import javax.xml.bind.DatatypeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Map;
 import java.util.UUID;
 
 @Controller
@@ -31,6 +37,9 @@ public class ImageController {
 
     @Autowired
     private HalfImageRepository halfImageRepository;
+
+    @Autowired
+    private SingleLinkRepository singleLinkRepository;
 
     @Autowired
     private UserService userService;
@@ -145,5 +154,40 @@ public class ImageController {
         halfImage = halfImageRepository.save(halfImage);
         image.getHalfImages().add(halfImage);
         return new ResponseEntity(HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value = "/singleLink/{id}", method = RequestMethod.GET)
+    public String redirectToImage(@PathVariable String id) {
+        SingleLink singleLink = singleLinkRepository.findOne(id);
+        if (singleLink == null || singleLink.getChangeoverTimes().isEmpty()) {
+            return null;
+        }
+        String singleLinkId = "";
+        Date singleLinkTime = new Date(0);
+        for (Map.Entry<String, Date> entry : singleLink.getChangeoverTimes().entrySet()) {
+            if (entry.getValue().after(singleLinkTime) && entry.getValue().before(new Date(System.currentTimeMillis()))) {
+                singleLinkId = entry.getKey();
+                singleLinkTime = entry.getValue();
+            }
+        }
+        if (singleLinkId.isEmpty()) return null;
+        return "redirect:/images/halfImage/" + singleLinkId + ".png";
+    }
+
+    @Transactional
+    @RequestMapping(value = "/{id}/singleLink", method = RequestMethod.POST)
+    public ResponseEntity createSingleLink(@PathVariable String id, @RequestParam Map<String, String> times) throws ParseException {
+        Image image = imageRepository.findOne(id);
+        if (image == null) {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+        SingleLink singleLink = image.getSingleLink();
+        SimpleDateFormat formatter = new SimpleDateFormat("y-M-d H:m");
+        for (Map.Entry<String, String> entry : times.entrySet()) {
+            singleLink.getChangeoverTimes().put(entry.getKey(), formatter.parse(entry.getValue()));
+        }
+        singleLink = singleLinkRepository.save(singleLink);
+        image.setSingleLink(singleLink);
+        return new ResponseEntity<>(singleLink.getId(), HttpStatus.OK);
     }
 }

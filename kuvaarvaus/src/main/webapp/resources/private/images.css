@@ -4,10 +4,17 @@
 */
 
 .aihe {
-  width: 1024px;
+  //width: 1024px;
+}
+.left {
+  width: 800px;
+  height: 512px;
+  min-width: 512px;
+  min-height: 512px;
+  text-align: center;
+  float: none;
 }
 .right {
-  width: 512px;
-  height: 670px;
   overflow-y: auto;
+  float: none;
 }

@@ -19,6 +19,8 @@ public class Image extends AbstractUUIDPersistable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
     private String name;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private SingleLink singleLink;
 
     public Image() {
         this.halfImages = new ArrayList<>();
@@ -72,5 +74,14 @@ public class Image extends AbstractUUIDPersistable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public SingleLink getSingleLink() {
+        if (singleLink == null) return new SingleLink();
+        return singleLink;
+    }
+
+    public void setSingleLink(SingleLink singleLink) {
+        this.singleLink = singleLink;
     }
 }

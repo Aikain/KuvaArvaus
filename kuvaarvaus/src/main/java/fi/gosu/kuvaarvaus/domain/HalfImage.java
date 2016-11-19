@@ -59,4 +59,8 @@ public class HalfImage extends AbstractUUIDPersistable {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+
+    public Date getSingleLinkTime() {
+        return this.image.getSingleLink().getChangeoverTimes().get(this.getId());
+    }
 }
