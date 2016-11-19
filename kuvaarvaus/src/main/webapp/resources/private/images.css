@@ -17,4 +17,5 @@
 .right {
   overflow-y: auto;
   float: none;
+  padding-bottom: 50px;
 }
