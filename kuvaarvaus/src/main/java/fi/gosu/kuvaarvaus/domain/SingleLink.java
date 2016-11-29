@@ -12,6 +12,7 @@ import java.util.Map;
 public class SingleLink extends AbstractUUIDPersistable {
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @PrimaryKeyJoinColumn
     private Image image;
 
     @ElementCollection

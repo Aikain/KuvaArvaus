@@ -170,7 +170,11 @@ public class ImageController {
                 singleLinkTime = entry.getValue();
             }
         }
-        if (singleLinkId.isEmpty()) return null;
+        if (singleLinkId.isEmpty()) return "redirect:/resources/public/notReady.png";
+        if (singleLinkId.equals("end")) {
+            Image image = imageRepository.findBySingleLink_id(singleLink.getId());
+            return "redirect:/images/" + image.getId() + ".png";
+        }
         return "redirect:/images/halfImage/" + singleLinkId + ".png";
     }
 
@@ -186,6 +190,7 @@ public class ImageController {
         for (Map.Entry<String, String> entry : times.entrySet()) {
             singleLink.getChangeoverTimes().put(entry.getKey(), formatter.parse(entry.getValue()));
         }
+        singleLink.setImage(image);
         singleLink = singleLinkRepository.save(singleLink);
         image.setSingleLink(singleLink);
         return new ResponseEntity<>(singleLink.getId(), HttpStatus.OK);

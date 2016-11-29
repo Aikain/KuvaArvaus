@@ -40,16 +40,18 @@
       <p class="validateTips">Määritä kellon ajat:</p>
       <p><a id="singleLink"></a></p>
       <form>
-        <label for="count">1. </label>
+        <label for="halfImage-1">1. </label>
         <input class="datetimepicker" type="text" name="times['id']" id="halfImage-1" class="text ui-widget-content ui-corner-all"><br />
-        <label for="count">2. </label>
+        <label for="halfImage-2">2. </label>
         <input class="datetimepicker" type="text" name="times['id']" id="halfImage-2" class="text ui-widget-content ui-corner-all"><br />
-        <label for="count">3. </label>
+        <label for="halfImage-3">3. </label>
         <input class="datetimepicker" type="text" name="times['id']" id="halfImage-3" class="text ui-widget-content ui-corner-all"><br />
-        <label for="count">4. </label>
+        <label for="halfImage-4">4. </label>
         <input class="datetimepicker" type="text" name="times['id']" id="halfImage-4" class="text ui-widget-content ui-corner-all"><br />
-        <label for="count">5. </label>
+        <label for="halfImage-5">5. </label>
         <input class="datetimepicker" type="text" name="times['id']" id="halfImage-5" class="text ui-widget-content ui-corner-all"><br />
+        <label for="endImage">End: </label>
+        <input class="datetimepicker" type="text" name="end" id="endImage" class="text ui-widget-content ui-corner-all"><br />
         <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
       </form>
     </div>
