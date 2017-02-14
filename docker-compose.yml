@@ -9,7 +9,7 @@ services:
       - "0.0.0.0:5567:80"
   mysql:
     image: mysql:latest
-    restart:always
+    restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=
       - MYSQL_DATABASE=kuvaarvaus
