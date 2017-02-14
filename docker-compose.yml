@@ -9,11 +9,9 @@ services:
       - "0.0.0.0:5567:80"
   mysql:
     image: mysql:latest
+    restart:always
     environment:
       - MYSQL_ROOT_PASSWORD=
       - MYSQL_DATABASE=kuvaarvaus
     volumes:
-      - persistent_db:/var/lib/mysql
-volumes:
-  persistent_db:
-   driver: local
+      - /srv/data/kuvaarvaus:/var/lib/mysql
