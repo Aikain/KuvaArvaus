@@ -13,5 +13,5 @@ spring:
         show-sql: false
     mvc:
         view:
-            prefix: classpath:WEB-INF/views/
+            prefix: WEB-INF/views/
             suffix: .jsp

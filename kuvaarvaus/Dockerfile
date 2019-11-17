@@ -9,7 +9,7 @@ RUN mvn package
 
 
 FROM openjdk:10-jre
-COPY --from=build /code/target/app.jar .
+COPY --from=build /code/target/app.war .
 
 EXPOSE 8080
-CMD ["java", "-jar", "./app.jar"]
+CMD ["java", "-jar", "./app.war"]
