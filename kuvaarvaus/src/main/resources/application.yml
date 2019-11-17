@@ -1,0 +1,17 @@
+spring:
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        password: ${DATABASE_PASSWORD}
+        url: ${DATABASE_URL}
+        username: ${DATABASE_USERNAME}
+    jpa:
+        database-platform: org.hibernate.dialect.MySQL8Dialect
+        generate-ddl: true
+        hibernate:
+            ddl-auto: update
+        open-in-view: true
+        show-sql: false
+    mvc:
+        view:
+            prefix: classpath:WEB-INF/views/
+            suffix: .jsp
