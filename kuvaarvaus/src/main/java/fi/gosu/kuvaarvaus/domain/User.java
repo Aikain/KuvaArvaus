@@ -1,13 +1,19 @@
 package fi.gosu.kuvaarvaus.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 @Entity
+@Getter
+@Setter
 public class User implements Serializable {
 
     @Id
@@ -16,6 +22,7 @@ public class User implements Serializable {
     @Column(columnDefinition = "VARCHAR(250) COLLATE latin1_general_ci", unique = true)
     private String username;
     private String password;
+    @JsonIgnore
     private String salt;
     @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinColumn(name = "Image_User", unique = false)
@@ -29,18 +36,6 @@ public class User implements Serializable {
         return userId;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     @JsonIgnore
     public String getPassword() {
         return password;
@@ -51,28 +46,10 @@ public class User implements Serializable {
         this.password = BCrypt.hashpw(password, this.salt);
     }
 
-    @JsonIgnore
-    public String getSalt() {
-        return salt;
-    }
-
-    public void setSalt(String salt) {
-        this.salt = salt;
-    }
 
     public List<Image> getImages() {
-        Collections.sort(images, new Comparator<Image>() {
-
-            @Override
-            public int compare(Image o1, Image o2) {
-                return o2.getCreateTime().compareTo(o1.getCreateTime());
-            }
-        });
+        images.sort((o1, o2) -> o2.getCreateTime().compareTo(o1.getCreateTime()));
         return images;
-    }
-
-    public void setImages(List<Image> images) {
-        this.images = images;
     }
 
     @Override
@@ -91,10 +68,7 @@ public class User implements Serializable {
             return false;
         }
         final User other = (User) obj;
-        if (!Objects.equals(this.userId, other.userId)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.userId, other.userId);
     }
 
 }

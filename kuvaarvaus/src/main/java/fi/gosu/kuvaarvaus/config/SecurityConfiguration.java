@@ -1,7 +1,7 @@
 package fi.gosu.kuvaarvaus.config;
 
 import fi.gosu.kuvaarvaus.auth.JpaAuthenticationProvider;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -20,10 +20,10 @@ import java.io.IOException;
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private JpaAuthenticationProvider jpaAuthenticationProvider;
+    private final JpaAuthenticationProvider jpaAuthenticationProvider;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) {

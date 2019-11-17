@@ -2,7 +2,7 @@ package fi.gosu.kuvaarvaus.controller;
 
 import fi.gosu.kuvaarvaus.domain.User;
 import fi.gosu.kuvaarvaus.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/*")
+@RequiredArgsConstructor
 public class DefaultController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String view(Model model) {

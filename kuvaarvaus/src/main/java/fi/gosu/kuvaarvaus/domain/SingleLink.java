@@ -1,5 +1,8 @@
 package fi.gosu.kuvaarvaus.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashMap;
@@ -9,6 +12,8 @@ import java.util.Map;
  * Created by Aikain on 19.11.2016.
  */
 @Entity
+@Getter
+@Setter
 public class SingleLink extends AbstractUUIDPersistable {
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -20,19 +25,5 @@ public class SingleLink extends AbstractUUIDPersistable {
 
     public SingleLink() {
         this.changeoverTimes = new HashMap<>();
-    }
-
-    public Image getImage() {
-        return image;
-    }
-    public Map<String, Date> getChangeoverTimes() {
-        return changeoverTimes;
-    }
-
-    public void setImage(Image image) {
-        this.image = image;
-    }
-    public void setChangeoverTimes(Map<String, Date> changeoverTimes) {
-        this.changeoverTimes = changeoverTimes;
     }
 }

@@ -9,7 +9,7 @@ import fi.gosu.kuvaarvaus.repository.HalfImageRepository;
 import fi.gosu.kuvaarvaus.repository.ImageRepository;
 import fi.gosu.kuvaarvaus.repository.SingleLinkRepository;
 import fi.gosu.kuvaarvaus.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,19 +27,13 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping("/images")
+@RequiredArgsConstructor
 public class ImageController {
 
-    @Autowired
-    private ImageRepository imageRepository;
-
-    @Autowired
-    private HalfImageRepository halfImageRepository;
-
-    @Autowired
-    private SingleLinkRepository singleLinkRepository;
-
-    @Autowired
-    private UserService userService;
+    private final ImageRepository imageRepository;
+    private final HalfImageRepository halfImageRepository;
+    private final SingleLinkRepository singleLinkRepository;
+    private final UserService userService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String view(Model model) {

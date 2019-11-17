@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
- * RuntimeException which return 404 httpstatus when throw it
+ * RuntimeException which return 404 HttpStatus when throw it
  *
  * @author Ville Nupponen
  * @since 0.1.0

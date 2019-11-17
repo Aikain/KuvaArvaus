@@ -2,7 +2,7 @@ package fi.gosu.kuvaarvaus.auth;
 
 import fi.gosu.kuvaarvaus.domain.User;
 import fi.gosu.kuvaarvaus.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -16,10 +16,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class JpaAuthenticationProvider implements AuthenticationProvider {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Override
     public Authentication authenticate(Authentication a) throws AuthenticationException {
