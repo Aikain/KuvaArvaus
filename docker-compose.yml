@@ -4,14 +4,18 @@ services:
     build: kuvaarvaus
     restart: always
     depends_on:
-      - mysql
+      - db
     ports:
-      - "0.0.0.0:5567:80"
-  mysql:
-    image: mysql:latest
+      - "0.0.0.0:5567:8080"
+    environment:
+      DATABASE_URL: jdbc:mysql://db:3306/kuvaarvaus?useSSL=false&allowPublicKeyRetrieval=true
+      DATABASE_USERNAME: root
+      DATABASE_PASSWORD: ighoa7Cai2rieTooraleiseemeejah1i
+  db:
+    image: mysql:8
     restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=
-      - MYSQL_DATABASE=kuvaarvaus
+      MYSQL_ROOT_PASSWORD: ighoa7Cai2rieTooraleiseemeejah1i
+      MYSQL_DATABASE: kuvaarvaus
     volumes:
-      - /srv/data/kuvaarvaus:/var/lib/mysql
+      - /srv/data/aikain/ikariam/pictureriddle.ikariam.aika.in/mysql:/var/lib/mysql

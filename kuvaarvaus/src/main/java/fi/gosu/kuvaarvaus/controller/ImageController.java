@@ -4,11 +4,11 @@ import fi.gosu.kuvaarvaus.domain.HalfImage;
 import fi.gosu.kuvaarvaus.domain.Image;
 import fi.gosu.kuvaarvaus.domain.SingleLink;
 import fi.gosu.kuvaarvaus.domain.User;
+import fi.gosu.kuvaarvaus.exceptions.NotFoundException;
 import fi.gosu.kuvaarvaus.repository.HalfImageRepository;
 import fi.gosu.kuvaarvaus.repository.ImageRepository;
 import fi.gosu.kuvaarvaus.repository.SingleLinkRepository;
 import fi.gosu.kuvaarvaus.service.UserService;
-import javax.xml.bind.DatatypeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -16,12 +16,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import javax.xml.bind.DatatypeConverter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -83,10 +80,7 @@ public class ImageController {
         if (ifNoneMatch != null) {
             return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
         }
-        Image image = imageRepository.findOne(id);
-        if (image == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        Image image = imageRepository.findById(id).orElseThrow(NotFoundException::new);
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentLength(image.getContent().length);
         headers.setETag("\"" + image.getId() + "\"");
@@ -97,10 +91,7 @@ public class ImageController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity deleteImage(@PathVariable String id) {
-        Image image = imageRepository.findOne(id);
-        if (image == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        Image image = imageRepository.findById(id).orElseThrow(NotFoundException::new);
         User user = userService.getAuthenticatedPerson();
         if (user == null) {
             return new ResponseEntity(HttpStatus.UNAUTHORIZED);
@@ -121,10 +112,7 @@ public class ImageController {
         if (ifNoneMatch != null) {
             return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
         }
-        HalfImage image = halfImageRepository.findOne(id);
-        if (image == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        HalfImage image = halfImageRepository.findById(id).orElseThrow(NotFoundException::new);
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentLength(image.getContent().length);
         headers.setETag("\"" + image.getId() + "\"");
@@ -143,10 +131,7 @@ public class ImageController {
         if (user == null) {
             return new ResponseEntity(HttpStatus.UNAUTHORIZED);
         }
-        Image image = imageRepository.findOne(id);
-        if (image == null) {
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
-        }
+        Image image = imageRepository.findById(id).orElseThrow(NotFoundException::new);
         HalfImage halfImage = new HalfImage();
         halfImage.setContent(DatatypeConverter.parseBase64Binary(file));
         halfImage.setImage(image);
@@ -158,10 +143,9 @@ public class ImageController {
 
     @RequestMapping(value = "/singleLink/{id}", method = RequestMethod.GET)
     public String redirectToImage(@PathVariable String id) {
-        SingleLink singleLink = singleLinkRepository.findOne(id);
-        if (singleLink == null || singleLink.getChangeoverTimes().isEmpty()) {
-            return null;
-        }
+        SingleLink singleLink = singleLinkRepository.findById(id).orElseThrow(NotFoundException::new);
+        if (singleLink.getChangeoverTimes().isEmpty()) return null;
+
         String singleLinkId = "";
         Date singleLinkTime = new Date(0);
         for (Map.Entry<String, Date> entry : singleLink.getChangeoverTimes().entrySet()) {
@@ -181,10 +165,7 @@ public class ImageController {
     @Transactional
     @RequestMapping(value = "/{id}/singleLink", method = RequestMethod.POST)
     public ResponseEntity createSingleLink(@PathVariable String id, @RequestParam Map<String, String> times) throws ParseException {
-        Image image = imageRepository.findOne(id);
-        if (image == null) {
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
-        }
+        Image image = imageRepository.findById(id).orElseThrow(NotFoundException::new);
         SingleLink singleLink = image.getSingleLink();
         SimpleDateFormat formatter = new SimpleDateFormat("y-M-d H:m");
         for (Map.Entry<String, String> entry : times.entrySet()) {

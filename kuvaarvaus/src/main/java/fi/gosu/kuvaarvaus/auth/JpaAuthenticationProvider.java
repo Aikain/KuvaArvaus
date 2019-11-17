@@ -2,8 +2,6 @@ package fi.gosu.kuvaarvaus.auth;
 
 import fi.gosu.kuvaarvaus.domain.User;
 import fi.gosu.kuvaarvaus.repository.UserRepository;
-import java.util.ArrayList;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -13,6 +11,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class JpaAuthenticationProvider implements AuthenticationProvider {

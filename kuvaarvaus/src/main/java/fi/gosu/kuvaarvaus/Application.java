@@ -1,15 +1,11 @@
 package fi.gosu.kuvaarvaus;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.orm.jpa.EntityScan;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@EntityScan(basePackages = "fi.gosu.kuvaarvaus.domain")
-@Configuration
-@EnableAutoConfiguration
-@ComponentScan
+@SpringBootApplication
+@EnableTransactionManagement
 public class Application {
 
     public static void main(String[] args) {

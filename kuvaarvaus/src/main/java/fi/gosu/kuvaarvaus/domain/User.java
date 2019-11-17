@@ -1,10 +1,11 @@
 package fi.gosu.kuvaarvaus.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
-import javax.persistence.*;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 
 @Entity
 public class User implements Serializable {

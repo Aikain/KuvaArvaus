@@ -1,10 +1,11 @@
 package fi.gosu.kuvaarvaus.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import java.util.UUID;
+import org.springframework.data.domain.Persistable;
+
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import org.springframework.data.domain.Persistable;
+import java.util.UUID;
 
 @MappedSuperclass
 public class AbstractUUIDPersistable implements Persistable<String> {

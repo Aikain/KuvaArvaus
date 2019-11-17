@@ -1,26 +1,34 @@
 package fi.gosu.kuvaarvaus.config;
 
 import fi.gosu.kuvaarvaus.auth.JpaAuthenticationProvider;
-import java.io.IOException;
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.authentication.configurers.GlobalAuthenticationConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 @Configuration
-@EnableWebMvcSecurity
+@EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private JpaAuthenticationProvider jpaAuthenticationProvider;
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) {
+        auth.authenticationProvider(jpaAuthenticationProvider);
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -49,19 +57,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.headers().cacheControl().disable();
     }
 
-    @Configuration
-    protected static class AuthenticationConfiguration extends GlobalAuthenticationConfigurerAdapter {
-
-        @Autowired
-        private JpaAuthenticationProvider jpaAuthenticationProvider;
-
-        @Override
-        public void init(AuthenticationManagerBuilder auth) throws Exception {
-            auth.authenticationProvider(jpaAuthenticationProvider);
-        }
-    }
-
-    public final class CsrfTokenGeneratorFilter extends OncePerRequestFilter {
+    public static final class CsrfTokenGeneratorFilter extends OncePerRequestFilter {
 
         @Override
         protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {

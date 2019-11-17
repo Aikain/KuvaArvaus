@@ -1,8 +1,9 @@
 package fi.gosu.kuvaarvaus.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import java.util.*;
+
 import javax.persistence.*;
+import java.util.*;
 
 @Entity
 public class Image extends AbstractUUIDPersistable {
